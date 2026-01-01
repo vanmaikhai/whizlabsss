@@ -45,6 +45,32 @@ crontab -e
 npm run dev
 ```
 
+## 🚀 GitHub Actions Deployment
+
+### Required GitHub Secrets:
+```
+AWS_ADMIN_ACCESS_KEY=your-admin-access-key
+AWS_ADMIN_SECRET_KEY=your-admin-secret-key
+API_SECRET_KEY=your-strong-api-secret-key
+AWS_ACCESS_KEY_ID=your-deploy-access-key
+AWS_SECRET_ACCESS_KEY=your-deploy-secret-key
+S3_BUCKET=your-s3-bucket-name
+```
+
+### S3 Bucket Setup:
+1. Create S3 bucket with static website hosting
+2. Enable public read access
+3. Set index.html as index document
+
+### Deploy Commands:
+```bash
+# Build for production
+npm run build
+
+# Deploy to S3
+aws s3 sync out/ s3://your-bucket --delete
+```
+
 ## 🔐 Security
 
 - **API Authentication** - Requires x-api-key header
