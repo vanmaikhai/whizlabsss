@@ -10,8 +10,15 @@ export default function EC2Lab() {
     const getCredentials = async () => {
         setLoading(true);
         try {
-            const response = await fetch('/api/create-lab-user-ec2');
+            console.log('Making request to /api/create-lab-user-ec2');
+            const response = await fetch('/api/create-lab-user-ec2', {
+                headers: {
+                    'x-api-key': 'x-api-key'
+                }
+            });
+            console.log('Response status:', response.status);
             const data = await response.json();
+            console.log('Response data:', data);
             if (data.success) {
                 setTempCredentials(data.credentials);
                 setStep(2);
@@ -19,6 +26,7 @@ export default function EC2Lab() {
                 setResult(`Error: ${data.error}`);
             }
         } catch (error) {
+            console.error('Fetch error:', error);
             setResult(`Error: ${error.message}`);
         } finally {
             setLoading(false);
@@ -267,7 +275,40 @@ export default function EC2Lab() {
                         <li>Instance type: t2.micro</li>
                         <li>Key pair: Proceed without key pair</li>
                         <li>Security group: Default</li>
+                        <li>
+                            <strong>User data</strong> (Advanced details → User data):
+                            <div
+                                style={{
+                                    backgroundColor: '#f8f9fa',
+                                    padding: '10px',
+                                    borderRadius: '5px',
+                                    fontFamily: 'monospace',
+                                    fontSize: '12px',
+                                    margin: '10px 0',
+                                    whiteSpace: 'pre-wrap',
+                                }}
+                            >
+                            {`#!/bin/bash
+                            # get admin privileges
+                            sudo su
+
+                            # install httpd (Linux 2 version)
+                            yum update -y
+                            yum install -y httpd.x86_64
+                            systemctl start httpd.service
+                            systemctl enable httpd.service
+                            echo "Hello World from $(hostname -f)" > /var/www/html/index.html`}
+                            </div>
+                        </li>
                         <li>Click "Launch instance"</li>
+                    </ul>
+
+                    <h3>Step 5: Test Your Web Server</h3>
+                    <ul>
+                        <li>Wait for instance to be "Running"</li>
+                        <li>Copy the Public IPv4 address</li>
+                        <li>Open in browser: <code>http://YOUR_PUBLIC_IP</code></li>
+                        <li>You should see "Hello World from..." message</li>
                     </ul>
 
                     <div

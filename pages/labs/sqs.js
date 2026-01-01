@@ -10,7 +10,11 @@ export default function SQSLab() {
     const getCredentials = async () => {
         setLoading(true);
         try {
-            const response = await fetch('/api/create-lab-user-sqs');
+            const response = await fetch('/api/create-lab-user-sqs', {
+                headers: {
+                    'x-api-key': 'x-api-key'
+                }
+            });
             const data = await response.json();
             if (data.success) {
                 setTempCredentials(data.credentials);

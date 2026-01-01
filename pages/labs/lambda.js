@@ -10,7 +10,11 @@ export default function LambdaLab() {
     const getCredentials = async () => {
         setLoading(true);
         try {
-            const response = await fetch('/api/create-lab-user-lambda');
+            const response = await fetch('/api/create-lab-user-lambda', {
+                headers: {
+                    'x-api-key': 'x-api-key'
+                }
+            });
             const data = await response.json();
             if (data.success) {
                 setTempCredentials(data.credentials);

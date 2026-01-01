@@ -10,7 +10,11 @@ export default function SNSLab() {
     const getCredentials = async () => {
         setLoading(true);
         try {
-            const response = await fetch('/api/create-lab-user-sns');
+            const response = await fetch('/api/create-lab-user-sns', {
+                headers: {
+                    'x-api-key': 'x-api-key'
+                }
+            });
             const data = await response.json();
             if (data.success) {
                 setTempCredentials(data.credentials);

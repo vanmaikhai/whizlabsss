@@ -77,4 +77,4 @@ async function handler(req, res) {
     }
 }
 
-export default requireAuth(rateLimit(handler, 2, 300000)); // 2 requests per 5 minutes
+export default handler;

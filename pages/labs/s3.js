@@ -10,7 +10,11 @@ export default function S3Lab() {
     const getCredentials = async () => {
         setLoading(true);
         try {
-            const response = await fetch('/api/create-lab-user-s3');
+            const response = await fetch('/api/create-lab-user-s3', {
+                headers: {
+                    'x-api-key': 'x-api-key'
+                }
+            });
             const data = await response.json();
             if (data.success) {
                 setTempCredentials(data.credentials);
