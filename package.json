@@ -1,16 +1,22 @@
 {
-  "name": "ec2-lab",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
-  },
-  "dependencies": {
-    "next": "14.0.0",
-    "react": "^18",
-    "react-dom": "^18",
-    "aws-sdk": "^2.1691.0"
-  }
+    "name": "whizlabs",
+    "version": "0.1.0",
+    "private": true,
+    "author": "vanmaikhai",
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "format": "prettier --write .",
+        "format:check": "prettier --check ."
+    },
+    "dependencies": {
+        "aws-sdk": "^2.1691.0",
+        "next": "14.0.0",
+        "react": "^18",
+        "react-dom": "^18"
+    },
+    "devDependencies": {
+        "prettier": "^3.7.4"
+    }
 }

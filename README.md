@@ -1,38 +1,79 @@
-# EC2 Creation Lab
+# AWS Services Lab Platform as Whizlabs
 
-Simple Next.js lab for creating AWS EC2 instances with user credentials.
+Secure temporary AWS lab environment creation system for students.
 
-## Setup
+## 🚀 Features
 
+- **Create temporary IAM users** with restricted permissions per AWS service
+- **Auto cleanup** users after 2 hours
+- **Rate limiting** and authentication to protect APIs
+- **Restricted permissions** - only allow necessary actions
+
+## 🛠️ Supported Services
+
+- **EC2** - Create/manage instances (t2.micro, t2.small only)
+- **S3** - Object storage buckets
+- **Lambda** - Serverless functions
+- **ECS** - Container orchestration
+- **SNS** - Notification service
+- **SQS** - Message queuing
+
+## 🔧 Setup
+
+1. **Clone and install:**
 ```bash
+git clone <repo>
+cd whizlabsss
 npm install
+```
+
+2. **Environment variables:**
+```bash
+cp .env.example .env.local
+# Fill in AWS credentials and API key
+```
+
+3. **Setup cleanup cron:**
+```bash
+chmod +x scripts/cleanup-cron.sh
+crontab -e
+# Add: */30 * * * * /path/to/cleanup-cron.sh
+```
+
+4. **Run:**
+```bash
 npm run dev
 ```
 
-Open http://localhost:3000
+## 🔐 Security
 
-## Usage
+- **API Authentication** - Requires x-api-key header
+- **Rate Limiting** - 3 requests/minute for user creation
+- **IAM Restrictions** - Only allow necessary actions
+- **Auto Cleanup** - Users automatically deleted after 2 hours
 
-1. Enter your AWS Access Key and Secret Key
-2. Click "Create EC2" button
-3. View the created instance ID or error message
+## 📝 API Usage
 
-## Features
+```bash
+# Create lab user
+curl -H "x-api-key: YOUR_KEY" \
+  http://localhost:3000/api/create-lab-user-ec2
 
-- Creates t2.micro EC2 instance with Amazon Linux 2
-- Uses us-east-1 region by default
-- Tags instance as "Lab-EC2-Instance"
-
-## Environment Variables
-
-Copy `.env.example` to `.env.local` and modify if needed:
-
-```
-AWS_REGION=us-east-1
-AWS_DEFAULT_INSTANCE_TYPE=t2.micro
-AWS_DEFAULT_AMI=ami-0c02fb55956c7d316
+# Cleanup expired users
+curl -X POST -H "x-api-key: YOUR_KEY" \
+  http://localhost:3000/api/cleanup-expired
 ```
 
-## Security Note
+## 🏗️ Architecture
 
-Never commit AWS credentials to version control. This lab accepts credentials via form input for educational purposes only.
+```
+Frontend (Next.js) → API Routes → AWS IAM → Temporary Users
+                                      ↓
+                              Auto Cleanup (Cron)
+```
+
+## ⚠️ Requirements
+
+- Node.js 18+
+- AWS Admin credentials
+- Strong API secret key
