@@ -26,7 +26,6 @@ jobs:
         AWS_ADMIN_ACCESS_KEY: ${{ secrets.AWS_ADMIN_ACCESS_KEY }}
         AWS_ADMIN_SECRET_KEY: ${{ secrets.AWS_ADMIN_SECRET_KEY }}
         API_SECRET_KEY: ${{ secrets.API_SECRET_KEY }}
-        NEXT_PUBLIC_API_SECRET_KEY: ${{ secrets.API_SECRET_KEY }}
     
     - name: Deploy to S3
       run: aws s3 sync out/ s3://${{ secrets.S3_BUCKET }} --delete

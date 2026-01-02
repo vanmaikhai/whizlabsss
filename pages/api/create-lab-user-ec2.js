@@ -46,25 +46,21 @@ async function handler(req, res) {
                 {
                     Effect: 'Allow',
                     Action: [
-                        'ec2:DescribeInstances',
-                        'ec2:DescribeImages',
-                        'ec2:DescribeKeyPairs',
-                        'ec2:DescribeSecurityGroups',
-                        'ec2:DescribeVpcs',
-                        'ec2:DescribeSubnets',
-                        'ec2:DescribeAvailabilityZones',
-                        'ec2:DescribeInstanceTypes',
-                        'ec2:DescribeNetworkInterfaces',
-                        'ec2:DescribeRouteTables',
-                        'ec2:DescribeInternetGateways',
-                        'ec2:CreateSecurityGroup',
-                        'ec2:AuthorizeSecurityGroupIngress',
-                        'ec2:AuthorizeSecurityGroupEgress',
-                        'ec2:RevokeSecurityGroupIngress',
-                        'ec2:RevokeSecurityGroupEgress',
-                        'ec2:DeleteSecurityGroup',
-                        'ec2:CreateTags',
-                        'ec2:DeleteTags',
+                        "ec2:RunInstances",
+                        "ec2:DescribeInstances",
+                        "ec2:TerminateInstances",
+                        "ec2:StopInstances",
+                        "ec2:StartInstances",
+                        "ec2:CreateKeyPair",
+                        "ec2:DeleteKeyPair",
+                        "ec2:DescribeKeyPairs",
+                        "ec2:DescribeVpcs",
+                        "ec2:DescribeSubnets",
+                        "ec2:DescribeSecurityGroups",
+                        "ec2:CreateSecurityGroup",
+                        "ec2:DeleteSecurityGroup",
+                        "ec2:AuthorizeSecurityGroupIngress",
+                        "ec2:RevokeSecurityGroupIngress"
                     ],
                     Resource: '*'
                 },
@@ -126,4 +122,4 @@ function generatePassword() {
     return password;
 }
 
-export default handler;
+export default requireAuth(rateLimit(handler, 3, 60000));
