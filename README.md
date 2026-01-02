@@ -103,3 +103,17 @@ Frontend (Next.js) → API Routes → AWS IAM → Temporary Users
 - Node.js 18+
 - AWS Admin credentials
 - Strong API secret key
+
+## ☕ Support This Project
+
+If this project helps you learn AWS, consider buying me a coffee!
+
+[![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/khaitkdev)
+
+**Other ways to support:**
+- ⭐ Star this repository
+- 🐛 Report bugs and suggest features
+- 📢 Share with fellow AWS learners
+- 💝 [PayPal Donation](paypal.me/khaitk)
+
+Your support keeps this free educational resource running! 🚀
