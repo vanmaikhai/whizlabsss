@@ -114,6 +114,6 @@ If this project helps you learn AWS, consider buying me a coffee!
 - ⭐ Star this repository
 - 🐛 Report bugs and suggest features
 - 📢 Share with fellow AWS learners
-- 💝 [PayPal Donation](paypal.me/khaitk)
+- 💝 [PayPal Donation](http://paypal.me/khaitk)
 
 Your support keeps this free educational resource running! 🚀
